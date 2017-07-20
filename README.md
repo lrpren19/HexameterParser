@@ -6,7 +6,7 @@ A Scala library for metrically parsing Homeric poetry or other ancient Greek tex
 
 ## Status
 
-Early development.  No published releases yet.
+Early development.  No published releases yet. (Currently in version 0.0.1)
 
 ## License
 
