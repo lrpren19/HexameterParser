@@ -5,7 +5,12 @@ import edu.holycross.shot.ohco2._
 import edu.holycross.shot.greek._
 import edu.holycross.shot.gsphone._
 
-case class HexameterParser (corpus: Corpus) {
+object HexameterParser {
 
+  def stripNonAlphabetic(gs: GreekString) : String = {
+    val noAcc = gs.stripAccent.ascii
+    val punctuation= """[\(\)|,;:.'"]""".r
+    punctuation.replaceAllIn(noAcc, "")
+  }
 
 }
