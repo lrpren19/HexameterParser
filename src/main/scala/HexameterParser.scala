@@ -72,6 +72,15 @@ object HexameterParser {
   notLengths.replaceAllIn(s,"?")
  }
 
+
+ /** Prepare a string analyzing the syllabic quantities of the hexameter.
+ *
+ * @param s A complete hexameter in Unicode Greek.
+ */
+ def analyzeLengths(s: String) : String = {
+   ""
+ }
+
  /** Returns List of possible arrangements for each line
   * takes a String of lengths ("?" or "-")
   *  @param s the String to be scanned

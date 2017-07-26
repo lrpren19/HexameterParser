@@ -55,10 +55,18 @@ class HexameterParserSpec extends FlatSpec {
    val expected = "--??"
    assert (lengths == expected)
  }
+
+
  "A HexameterParser" should "scann all possibile versions of a line of lengths" in {
    val s= "---???????-????"
    val scanned= HexameterParser.scanner(s)
    val expected = List("---???????-????","4_1","4_5","4_6")
    assert (scanned == expected)
+ }
+
+ it should "map a Greek hexameter in Unicode to a string representing lengths" in {
+   val quantities = HexameterParser.analyzeLengths("Μῆνιν ἄειδε θεὰ Πηληϊάδεω Ἀχιλῆος")
+   val expected = "-??-???--????-?"
+   assert (quantities == expected)
  }
 }
