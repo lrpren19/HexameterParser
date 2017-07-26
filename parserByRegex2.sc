@@ -11,7 +11,7 @@ val greekLines = lines.map( n => LiteraryGreekString(n))
 val asciiLines = greekLines.map(_.ascii)
 
 
-val punctuation= """[\\/\(\)\*|,;:'".=]""".r
+val punctuation= """[\\/\(\)\*|,;:#'".=]""".r
 val noPunctuation= asciiLines.map(n => punctuation.replaceAllIn(n, ""))
 
 val splitOnDiars = """([hweoaiu])(\+)""".r
@@ -23,7 +23,7 @@ val synizesisMarked= diarsSplit.map( s => synizesis.replaceAllIn(s,"w"))
 val epicCorreption = """((ai)|(au)|(oi)|(ou)|(ui)|(ei)|(eu)|[hw]) *([hwaeiou])""".r
 val correpted = synizesisMarked.map(s => epicCorreption.replaceAllIn(s, "? $9"))
 
-val longPosition= """(ai|au|ou|oi|ui|ei|eu|[hweoaiu])( ?)((zyc)|([qrtpsdygklzxcbnmf]( ?)[qrtpsdygklzxcbnmf]))""".r
+val longPosition= """(ai|au|ou|oi|ui|ei|eu|[hweoaiu])( ?)([zyc]|([qrtpsdygklzxcbnmf]( ?)[qrtpsdygklzxcbnmf]))""".r
 val longByPosition= correpted.map( n => longPosition.replaceAllIn(n, "-"))
 
 val longNature = """((ai)|(au)|(oi)|(ui)|(ei)|(eu)|(ou)|[hw])""".r

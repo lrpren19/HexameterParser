@@ -14,8 +14,8 @@ object HexameterParser {
 */
   def stripNonAlphabetic(gs: GreekString) : String = {
     val noAcc = gs.stripAccent.ascii
-    val punctuation= """[\(\)|,;:.'"]""".r
-    punctuation.replaceAllIn(noAcc, "")
+    val punctuationAndCaps= """[\(\)|,;:.*#'"]""".r
+    punctuationAndCaps.replaceAllIn(noAcc, "")
   }
 
 /** Returns string with isolated vowels that contain diareses
@@ -25,6 +25,15 @@ object HexameterParser {
  def isolateDiaresis(s: String) : String = {
    val diaresis = """([hweoaiu])(\+)""".r
    diaresis.replaceAllIn(s, " $1 ")
+ }
+
+/** Returns String with vowels that combine do to synezis marked as an 'w'
+ *  only accounts for 'εω' at the end of a word and 'ηυ'
+ *  @parm s the String possibly containing a Synizesis
+*/
+ def accountForSynezisis(s: String) : String = {
+   val synizesis="""(ew)\b|(hu)""".r
+   synizesis.replaceAllIn(s, "w")
  }
 
 /** Returns string with vowels or dipthongs that might undergo epic correption marked as "?"
@@ -43,7 +52,7 @@ object HexameterParser {
   *  @param s the String
  */
  def longByPosition(s: String) : String = {
-   val longPosition= """(ai|au|ou|oi|ui|ei|eu|[hweoaiu])( ?)((zyc)|([qrtpsdygklzxcbnmf]( ?)[qrtpsdygklzxcbnmf]))""".r
+   val longPosition= """(ai|au|ou|oi|ui|ei|eu|[hweoaiu])( ?)([zyc]|([qrtpsdygklzxcbnmf]( ?)[qrtpsdygklzxcbnmf]))""".r
    longPosition.replaceAllIn(s, "-$2$3")
  }
 
@@ -78,7 +87,16 @@ object HexameterParser {
  * @param s A complete hexameter in Unicode Greek.
  */
  def analyzeLengths(s: String) : String = {
-   ""
+   val gs = LiteraryGreekString(s)
+   val nonAB= stripNonAlphabetic(gs)
+   val isolateDiars= isolateDiaresis(nonAB)
+   val synizesisMarked= accountForSynezisis(isolateDiars)
+   val correpted= accountForCorreption(synizesisMarked)
+   val lbp= longByPosition(correpted)
+   val lbn= longByNature(lbp)
+   val noConsonants= removeConsonants(lbn)
+   makeLengths(noConsonants)
+
  }
 
  /** Returns List of possible arrangements for each line
@@ -169,7 +187,11 @@ object HexameterParser {
 
  }
 
- def scannerHistogram (l :List[List[String]]) = {
+/** Returns a Map which counts the number of arrangements in a List[List[String]]
+ *
+ *  @param l The List containing possible arragnements
+*/
+ def scannerHistogram (l :List[List[String]]) : Map[String,Int] = {
    l.flatten.filter(n=> n matches """(\d\_\d\d?)""").groupBy(identity).mapValues(_.size)
  }
 
