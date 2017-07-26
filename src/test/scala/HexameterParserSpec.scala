@@ -57,7 +57,7 @@ class HexameterParserSpec extends FlatSpec {
  }
 
 
- "A HexameterParser" should "scann all possibile versions of a line of lengths" in {
+ "A HexameterParser" should "scann all possible versions of a line of lengths" in {
    val s= "---???????-????"
    val scanned= HexameterParser.scanner(s)
    val expected = List("---???????-????","4_1","4_5","4_6")
@@ -68,5 +68,12 @@ class HexameterParserSpec extends FlatSpec {
    val quantities = HexameterParser.analyzeLengths("Μῆνιν ἄειδε θεὰ Πηληϊάδεω Ἀχιλῆος")
    val expected = "-??-???--????-?"
    assert (quantities == expected)
+ }
+
+ it should "find a list of all possible analyses of a line for a single hexameter" in {
+    val hex = "Μῆνιν ἄειδε θεὰ Πηληϊάδεω Ἀχιλῆος"
+    val analyzed = HexameterParser.scan(hex)
+    val expected = List("---???????-????","4_1","4_5","4_6")
+    assert(analyzed == expected)
  }
 }

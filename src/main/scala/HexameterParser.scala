@@ -85,7 +85,7 @@ object HexameterParser {
   * takes a String of lengths ("?" or "-")
   *  @param s the String to be scanned
  */
- def scanner(s: String )  = {
+ def scanner(s: String ) : List[String] = {
    val arrang1_1="""\A(-|\?)(-|\?)(-|\?)(-|\?)(-|\?)(-|\?)(-|\?)(-|\?)(-|\?)(-|\?)(-|\?)(-|\?)\z""".r
    val arrang2_1="""\A(-|\?)\?\?(-|\?)(-|\?)(-|\?)(-|\?)(-|\?)(-|\?)(-|\?)(-|\?)(-|\?)(-|\?)\z""".r
    val arrang2_2="""\A(-|\?)(-|\?)(-|\?)\?\?(-|\?)(-|\?)(-|\?)(-|\?)(-|\?)(-|\?)(-|\?)(-|\?)\z""".r
@@ -154,6 +154,19 @@ object HexameterParser {
 
    val allPossible = List(scanned6,scanned51,scanned52,scanned53,scanned54,scanned55,scanned41,scanned42,scanned43,scanned44,scanned45,scanned46,scanned47,scanned48,scanned49,scanned410,scanned31,scanned32,scanned33,scanned34,scanned35,scanned36,scanned37,scanned38,scanned39,scanned310,scanned21,scanned22,scanned23,scanned24,scanned25,scanned1)
    allPossible.distinct
+ }
+
+
+
+ /** Compute list of possible metrical analyses for a hexameter. Each analysis is
+ * represented as a String of syllabic quantity patters.
+ *
+ * @param s A complete hexameter in Unicode Greek.
+ */
+ def scan(s: String) : List[String] = {
+   val quantities = analyzeLengths(s)
+   scanner(quantities)
+
  }
 
  def scannerHistogram (l :List[List[String]]) = {
