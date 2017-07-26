@@ -75,6 +75,51 @@ val arrang5_5="""\A(-|\?)\?\?(-|\?)\?\?(-|\?)\?\?(-|\?)\?\?(-|\?)(-|\?)(-|\?)(-|
 val arrang6_1="""\A(-|\?)\?\?(-|\?)\?\?(-|\?)\?\?(-|\?)\?\?(-|\?)\?\?(-|\?)(-|\?)\z""".r
 
 val scanned6= lengthScannable.map(s => arrang6_1.replaceAllIn(s,"6_1"))
+val scanned51= lengthScannable.map(s => arrang5_1.replaceAllIn(s,"5_1 "))
+val scanned52= lengthScannable.map(s => arrang5_2.replaceAllIn(s,"5_2"))
+val scanned53= lengthScannable.map(s => arrang5_3.replaceAllIn(s,"5_3"))
+val scanned54= lengthScannable.map(s => arrang5_4.replaceAllIn(s,"5_4"))
+val scanned55= lengthScannable.map(s => arrang5_5.replaceAllIn(s,"5_5"))
+val scanned41= lengthScannable.map(s => arrang4_1.replaceAllIn(s,"4_1"))
+val scanned42= lengthScannable.map(s => arrang4_2.replaceAllIn(s,"4_2"))
+val scanned43= lengthScannable.map(s => arrang4_3.replaceAllIn(s,"4_3"))
+val scanned44= lengthScannable.map(s => arrang4_4.replaceAllIn(s,"4_4"))
+val scanned45= lengthScannable.map(s => arrang4_5.replaceAllIn(s,"4_5"))
+val scanned46= lengthScannable.map(s => arrang4_6.replaceAllIn(s,"4_6"))
+val scanned47= lengthScannable.map(s => arrang4_7.replaceAllIn(s,"4_7"))
+val scanned48= lengthScannable.map(s => arrang4_8.replaceAllIn(s,"4_8"))
+val scanned49= lengthScannable.map(s => arrang4_9.replaceAllIn(s,"4_9"))
+val scanned410= lengthScannable.map(s => arrang4_10.replaceAllIn(s,"4_10"))
+val scanned31= lengthScannable.map(s => arrang3_1.replaceAllIn(s,"3_1"))
+val scanned32= lengthScannable.map(s => arrang3_2.replaceAllIn(s,"3_2"))
+val scanned33= lengthScannable.map(s => arrang3_3.replaceAllIn(s,"3_3"))
+val scanned34= lengthScannable.map(s => arrang3_4.replaceAllIn(s,"3_4"))
+val scanned35= lengthScannable.map(s => arrang3_5.replaceAllIn(s,"3_5"))
+val scanned36= lengthScannable.map(s => arrang3_6.replaceAllIn(s,"3_6"))
+val scanned37= lengthScannable.map(s => arrang3_7.replaceAllIn(s,"3_7"))
+val scanned38= lengthScannable.map(s => arrang3_8.replaceAllIn(s,"3_8"))
+val scanned39= lengthScannable.map(s => arrang3_9.replaceAllIn(s,"3_9"))
+val scanned310= lengthScannable.map(s => arrang3_10.replaceAllIn(s,"3_10"))
+val scanned21= lengthScannable.map(s => arrang2_1.replaceAllIn(s,"2_1"))
+val scanned22= lengthScannable.map(s => arrang2_2.replaceAllIn(s,"2_2"))
+val scanned23= lengthScannable.map(s => arrang2_3.replaceAllIn(s,"2_3"))
+val scanned24= lengthScannable.map(s => arrang2_4.replaceAllIn(s,"2_4"))
+val scanned25= lengthScannable.map(s => arrang2_5.replaceAllIn(s,"2_5"))
+val scanned1= lengthScannable.map(s => arrang1_1.replaceAllIn(s, "1_1"))
+
+//scanned6.zip(scanned51).zip(scanned52).zip(scanned53).zip(scanned54).zip(scanned55).zip(scanned41).zip(scanned42).zip(scanned43).zip(scanned44).zip(scanned45).zip(scanned46).zip(scanned47).zip(scanned48).zip(scanned49).zip(scanned410).zip(scanned31).zip(scanned32).zip(scanned33).zip(scanned34).zip(scanned35).zip(scanned36).zip(scanned37).zip(scanned38).zip(scanned39).zip(scanned310).zip(scanned21).zip(scanned22).zip(scanned23).zip(scanned23).zip(scanned24).zip(scanned25).zip(scanned1)
+
+val allPossible = List(diarsSplitscanned6,scanned51,scanned52,scanned53,scanned54,scanned55,scanned41,scanned42,scanned43,scanned44,scanned45,scanned46,scanned47,scanned48,scanned49,scanned410,scanned31,scanned32,scanned33,scanned34,scanned35,scanned36,scanned37,scanned38,scanned39,scanned310,scanned21,scanned22,scanned23,scanned24,scanned25,scanned1).transpose
+val rslt=allPossible.map(n => n.distinct)
+val h = rsltf.groupBy(_.size)
+
+
+
+
+
+
+/**
+val scanned6= lengthScannable.map(s => arrang6_1.replaceAllIn(s,"6_1"))
 val scanned51= scanned6.map(s => arrang5_1.replaceAllIn(s,"5_1 "))
 val scanned52= scanned51.map(s => arrang5_2.replaceAllIn(s,"5_2"))
 val scanned53= scanned52.map(s => arrang5_3.replaceAllIn(s,"5_3"))
@@ -117,3 +162,4 @@ val scanned="""(\d\_\d\d?)(\D+)""".r
 val fixed = tupString.map(s => scanned.replaceAllIn(s, "$1"))
 val notScanned="""([-?]+)(\s)+([qrtpsdygklzxcbnmfhweoiua])""".r
 val fixedd = fixed.map(s => notScanned.replaceAllIn(s, "$3"))
+**/
