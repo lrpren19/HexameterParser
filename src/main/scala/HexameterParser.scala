@@ -147,7 +147,7 @@ object HexameterParser {
    allPossible.distinct
  }
 
- def scannerHistogram (l :List[List[String]])= {
+ def scannerHistogram (l :List[List[String]]) = {
    l.flatten.filter(n=> n matches """(\d\_\d\d?)""").groupBy(identity).mapValues(_.size)
  }
 
