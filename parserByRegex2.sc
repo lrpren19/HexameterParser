@@ -75,7 +75,7 @@ val arrang5_5="""\A(-|\?)\?\?(-|\?)\?\?(-|\?)\?\?(-|\?)\?\?(-|\?)(-|\?)(-|\?)(-|
 val arrang6_1="""\A(-|\?)\?\?(-|\?)\?\?(-|\?)\?\?(-|\?)\?\?(-|\?)\?\?(-|\?)(-|\?)\z""".r
 
 val scanned6= lengthScannable.map(s => arrang6_1.replaceAllIn(s,"6_1"))
-val scanned51= lengthScannable.map(s => arrang5_1.replaceAllIn(s,"5_1 "))
+val scanned51= lengthScannable.map(s => arrang5_1.replaceAllIn(s,"5_1"))
 val scanned52= lengthScannable.map(s => arrang5_2.replaceAllIn(s,"5_2"))
 val scanned53= lengthScannable.map(s => arrang5_3.replaceAllIn(s,"5_3"))
 val scanned54= lengthScannable.map(s => arrang5_4.replaceAllIn(s,"5_4"))
@@ -109,9 +109,9 @@ val scanned1= lengthScannable.map(s => arrang1_1.replaceAllIn(s, "1_1"))
 
 //scanned6.zip(scanned51).zip(scanned52).zip(scanned53).zip(scanned54).zip(scanned55).zip(scanned41).zip(scanned42).zip(scanned43).zip(scanned44).zip(scanned45).zip(scanned46).zip(scanned47).zip(scanned48).zip(scanned49).zip(scanned410).zip(scanned31).zip(scanned32).zip(scanned33).zip(scanned34).zip(scanned35).zip(scanned36).zip(scanned37).zip(scanned38).zip(scanned39).zip(scanned310).zip(scanned21).zip(scanned22).zip(scanned23).zip(scanned23).zip(scanned24).zip(scanned25).zip(scanned1)
 
-val allPossible = List(diarsSplitscanned6,scanned51,scanned52,scanned53,scanned54,scanned55,scanned41,scanned42,scanned43,scanned44,scanned45,scanned46,scanned47,scanned48,scanned49,scanned410,scanned31,scanned32,scanned33,scanned34,scanned35,scanned36,scanned37,scanned38,scanned39,scanned310,scanned21,scanned22,scanned23,scanned24,scanned25,scanned1).transpose
+val allPossible = List(diarsSplit,scanned6,scanned51,scanned52,scanned53,scanned54,scanned55,scanned41,scanned42,scanned43,scanned44,scanned45,scanned46,scanned47,scanned48,scanned49,scanned410,scanned31,scanned32,scanned33,scanned34,scanned35,scanned36,scanned37,scanned38,scanned39,scanned310,scanned21,scanned22,scanned23,scanned24,scanned25,scanned1).transpose
 val rslt=allPossible.map(n => n.distinct)
-val h = rsltf.groupBy(_.size)
+val h = rslt.groupBy(_.size)
 
 
 

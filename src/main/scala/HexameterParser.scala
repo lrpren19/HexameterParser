@@ -111,7 +111,7 @@ object HexameterParser {
    val arrang6_1="""\A(-|\?)\?\?(-|\?)\?\?(-|\?)\?\?(-|\?)\?\?(-|\?)\?\?(-|\?)(-|\?)\z""".r
 
    val scanned6= arrang6_1.replaceAllIn(s,"6_1")
-   val scanned51= arrang5_1.replaceAllIn(s,"5_1 ")
+   val scanned51= arrang5_1.replaceAllIn(s,"5_1")
    val scanned52=  arrang5_2.replaceAllIn(s,"5_2")
    val scanned53= arrang5_3.replaceAllIn(s,"5_3")
    val scanned54= arrang5_4.replaceAllIn(s,"5_4")
@@ -147,5 +147,8 @@ object HexameterParser {
    allPossible.distinct
  }
 
+ def scannerHistogram (l :List[List[String]])= {
+   l.flatten.filter(n=> n matches """(\d\_\d\d?)""").groupBy(identity).mapValues(_.size)
+ }
 
 }
