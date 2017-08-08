@@ -14,7 +14,7 @@ object HexameterParser {
 */
   def stripNonAlphabetic(gs: GreekString) : String = {
     val noAcc = gs.stripAccent.ascii
-    val punctuationAndCaps= """[\(\)|,;:.*#'"]""".r
+    val punctuationAndCaps= """[\(\)|,;:.*'"]""".r
     punctuationAndCaps.replaceAllIn(noAcc, "")
   }
 
@@ -23,8 +23,10 @@ object HexameterParser {
  *  @param s the String of ascii characters
 */
  def isolateDiaresis(s: String) : String = {
+   val hash = """#""".r
+   val hashesRemoved= hash.replaceAllIn(s," i ")
    val diaresis = """([hweoaiu])(\+)""".r
-   diaresis.replaceAllIn(s, " $1 ")
+   diaresis.replaceAllIn(hashesRemoved, " $1 ")
  }
 
 /** Returns String with vowels that combine do to synezis marked as an 'w'
@@ -42,7 +44,7 @@ object HexameterParser {
  *  @param s the String
 */
  def accountForCorreption(s: String) : String = {
-   val epicCorreption = """(ai|au|oi|ou|ui|ei|eu|[hw]) *([hwaeiou])""".r
+   val epicCorreption = """(ai|au|oi|ou|ui|ei|eu|[hw]) *((?=[hwaeiou]))""".r
    epicCorreption.replaceAllIn(s, "? $2")
  }
 
@@ -194,5 +196,9 @@ object HexameterParser {
  def scannerHistogram (l :List[List[String]]) : Map[String,Int] = {
    l.flatten.filter(n=> n matches """(\d\_\d\d?)""").groupBy(identity).mapValues(_.size)
  }
-
+/*
+ def getUrn (s :String) :edu.holycross.shot.ohco2.CitableNode = {
+   val ind = .indexOf("s")
+   c.nodes(ind)
+*/
 }

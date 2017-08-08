@@ -15,16 +15,16 @@ class HexameterParserSpec extends FlatSpec {
   }
 
   it should "isolate vowels that have a diaresis" in {
-    val s = "eyxei+"
+    val s = "atre#dhs eyxei+"
     val isolated = HexameterParser.isolateDiaresis(s)
-    val exp = "eyxe i "
+    val exp = "atre i dhs eyxe i "
     assert (isolated == exp)
   }
 
  it should "replace uncertain vowels due to epic correption with ?" in {
-   val s = "w a ei o"
+   val s = "w h ei o"
    val correpted = HexameterParser.accountForCorreption(s)
-   val expected = "? a ? o"
+   val expected = "? ? ? o"
    assert (correpted == expected)
  }
 

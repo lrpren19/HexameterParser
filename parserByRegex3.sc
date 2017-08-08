@@ -11,23 +11,26 @@ val greekLines = lines.map( n => LiteraryGreekString(n))
 val asciiLines = greekLines.map(_.ascii)
 
 
-val punctuation= """[\\/\(\)\*|,;:#'".=]""".r
+val punctuation= """[\\/\(\)\*|,;:'".=]""".r
 val noPunctuation= asciiLines.map(n => punctuation.replaceAllIn(n, ""))
 
+val hash = """#""".r
+val hashed= noPunctuation.map(n => hash.replaceAllIn(n, " i "))
+
 val splitOnDiars = """([hweoaiu])(\+)""".r
-val diarsSplit = noPunctuation.map(n => splitOnDiars.replaceAllIn(n," $1 "))
+val diarsSplit = hashed.map(n => splitOnDiars.replaceAllIn(n," $1 "))
 
 val synizesis="""(ew)|(hu)""".r
 val synizesisMarked= diarsSplit.map( s => synizesis.replaceAllIn(s,"w"))
 
-val epicCorreption = """((ai)|(au)|(oi)|(ou)|(ui)|(ei)|(eu)|[hw]) *([hwaeiou])""".r
-val correpted = synizesisMarked.map(s => epicCorreption.replaceAllIn(s, "? $9"))
+val epicCorreption = """(ai|au|oi|ou|ui|ei|eu|[hw]) *((?=[hwaeiou]))""".r
+val correpted = synizesisMarked.map(s => epicCorreption.replaceAllIn(s, "? $2"))
 /*
 val consonantLiquid = """([qrtpsdygkzxcbnm])[lr]""".r
 val liquidException = correpted.map(s => consonantLiquid.replaceAllIn(s,"$1"))
 */
-val longPosition= """(ai|au|ou|oi|ui|ei|eu|[hweoaiu])( *)([zyc]|([qrtpsdygklzxcbnmf]( *)[qrtpsdygklzxcbnmf]))""".r
-val longByPosition= correpted.map( n => longPosition.replaceAllIn(n, "-"))
+val longPosition= """(ai|au|ou|oi|ui|ei|eu|[hweoaiu])( *)([zyc]|([qrtpsdygklzxcbnmf]( ?)[qrtpsdygklzxcbnmf]))""".r
+val longByPosition= correpted.map( n => longPosition.replaceAllIn(n, "-$2$3"))
 
 val longNature = """((ai)|(au)|(oi)|(ui)|(ei)|(eu)|(ou)|[hw])""".r
 val longByNature = longByPosition.map( s => longNature.replaceAllIn(s,"-"))
@@ -112,7 +115,7 @@ val rslt=allPossible.map(n => n.distinct)
 val h = rslt.groupBy(_.size)
 
 def getUrn (s :String) :edu.holycross.shot.ohco2.CitableNode = {
-  val ind = diarsSplit.indexOf("s")
+  val ind = diarsSplit.indexOf(s)
   c.nodes(ind)
 
 }
