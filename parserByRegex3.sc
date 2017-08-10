@@ -153,13 +153,3 @@ def scanWithNodes(s:String) = {
 def scannerHistogram (l :Vector[List[String]]) : Map[String,Int] = {
   l.flatten.filter(n=> n matches """(\d\_\d\d?)""").groupBy(identity).mapValues(_.size)
 }
-
-def findChar(c: String, levelVector: Vector[List[String]]) = {
-  // view is to ensure indices are only calculated up to the element you need
-  val vec1 = levelVector.view.map(_.indexOf(c))
-  val x = vec1.indexWhere(_ != -1)
-  if (x != -1)
-    Some((x, vec1(x)))
-  else
-    None // or (-1, -1) if you prefer
-}
