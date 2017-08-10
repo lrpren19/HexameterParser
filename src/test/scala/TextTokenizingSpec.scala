@@ -2,31 +2,25 @@ package edu.holycross.shot.lrp
 import org.scalatest.FlatSpec
 
 import edu.holycross.shot.greek._
-
+import edu.holycross.shot.gsphone._
 
 
 class TextTokenizingSpec extends FlatSpec {
 
-  "A HexameterParser" should  "isolate vowels that have a diaresis" in {
-    val s = "atrei+dhs"
-    val isolated = HexameterParser.tokenizeDiaeresis(s)
-    val exp = "atre i dhs"
-    assert (isolated == exp)
-  }
 
- it should "replace uncertain vowels due to epic correption with ?" in pending
 
- it should "replace vowels/dipthongs that are long by position with -" in pending
+ it should "bring a Unicode string into a vector of syllable strings" in {
+   // test gs_phone library's syllabification
+   val line = "ἡρώων, αὐτοὺς δὲ ἑλώρια τεῦχε κύνεσσιν"
+   val wordsVector = line.split(" ").toVector
+   val gsVector = wordsVector.map(LiteraryGreekString(_))
 
- it should "replace vowels/dipthongs that are long by nature with -" in pending
 
-it should "remove consonants and spaces from a string, leaving only vowels and lengths" in pending
+   println("Original line: \n" + line + "\n")
+   println("Vector of white-space delimited Greek words:\n" + gsVector + "\n")
+   println("\nSyllabified:")
+   val sylls = LGSyllable.syllabify(gsVector)
+   println(sylls.map(_.ucode).mkString(" -- "))
 
-it should "replace all characters that are not a length with '?'" in  pending
-
- it should "map a Greek hexameter in Unicode to a string representing lengths" in pending
-
- it should "scan all possible versions of a line of lengths" in pending
-
- it should "find a list of all possible analyses of a line for a single hexameter in unicode" in pending
+ }
 }

@@ -41,12 +41,6 @@ object HexameterParser{
    diaresis.replaceAllIn(hashesRemoved, " $1 ")
  }
 
-
-  def tokenizeDiaeresis(s: String) : String = {
-    val re = "([aeiouhw])\\+".r
-   re.replaceAllIn(s," $1 ")
-  }
-
 /** Returns String with vowels that combine do to synezis marked as an 'w'
  *  only accounts for 'εω' at the end of a word and 'ηυ'
  *  @parm s the String possibly containing a Synizesis
@@ -226,4 +220,34 @@ object HexameterParser{
    val ind = .indexOf("s")
    c.nodes(ind)
 */
+
+
+
+  /** Given a string in ASCII, tokenize into white-space
+  * delimite units any vowel+diaeresis combinations.
+  *
+  * @param s String in ASCII to tokenize.
+  */
+  def tokenizeDiaeresis(s: String) : String = {
+    val re = "([aeiouhw])[\\+#]".r
+   re.replaceAllIn(s," $1 ")
+  }
+
+  /** Given a string in Unicode Greek, break it up into a
+  * Vector of strings corresponding to syllables.
+  *
+  * @param s String to analyze.
+  */
+  def syllabify(s: String): Vector[LiteraryGreekString] = {
+    val gs = LiteraryGreekString(s)
+    println(gs.ucode + "==" + gs.ascii)
+
+    /*
+    val lastStep = tokenizeDiaeresis(gs.ascii)
+    val tokens = lastStep.split("[ ]+").toVector
+    tokens.map(LiteraryGreekString(_))
+*/
+    Vector.empty[LiteraryGreekString]
+  }
+
 }
