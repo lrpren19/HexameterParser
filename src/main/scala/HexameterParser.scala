@@ -41,6 +41,12 @@ object HexameterParser{
    diaresis.replaceAllIn(hashesRemoved, " $1 ")
  }
 
+
+  def tokenizeDiaeresis(s: String) : String = {
+    val re = "([aeiouhw])\\+".r
+   re.replaceAllIn(s," $1 ")
+  }
+
 /** Returns String with vowels that combine do to synezis marked as an 'w'
  *  only accounts for 'εω' at the end of a word and 'ηυ'
  *  @parm s the String possibly containing a Synizesis
