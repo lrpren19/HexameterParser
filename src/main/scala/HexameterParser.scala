@@ -10,11 +10,12 @@ object HexameterParser{
 
   /** Replaces combinations of mute+liquid with mute only.
   *
-  * @param s String to apply replacement to
+  * @param s String in Unicode Greek.
   */
   def muteLiqdRule(s: String) : String = {
+    val gs = LiteraryGreekString(s)
     val consonantLiquid = """([qrtpsdygkzxcbnm])[lr]""".r
-    consonantLiquid.replaceAllIn(s,"$1")
+    consonantLiquid.replaceAllIn(gs.ascii,"$1")
   }
 
 
@@ -109,8 +110,7 @@ object HexameterParser{
    val lbn= longByNature(lbp)
    val noConsonants= removeConsonants(lbn)
    makeLengths(noConsonants)
-
- }
+  }
 
  /** Returns List of possible arrangements for each line
   * takes a String of lengths ("?" or "-")
@@ -190,14 +190,22 @@ object HexameterParser{
 
 
  /** Compute list of possible metrical analyses for a hexameter. Each analysis is
- * represented as a String of syllabic quantity patters.
+ * represented by a code standing for a String of syllabic quantity patterns.
+ * The resulting list begins with a String representing the syllabic quantity patterns
+ * so the list is is never empty:  a list of size 1 means that no anlayses fit this pattern.
  *
  * @param s A complete hexameter in Unicode Greek.
  */
  def scan(s: String) : List[String] = {
    val quantities = analyzeLengths(s)
-   scanner(quantities)
-
+   val scansions = scanner(quantities)
+   if (scansions.size == 1) {
+     // no analyses found!
+     val muted = muteLiqdRule(s)
+     scanner(analyzeLengths(muted))
+   } else {
+     scansions
+   }
  }
 
 /** Returns a Map which counts the number of arrangements in a List[List[String]]
