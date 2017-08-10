@@ -5,7 +5,7 @@ import edu.holycross.shot.ohco2._
 import edu.holycross.shot.greek._
 import edu.holycross.shot.gsphone._
 
-object HexameterParser {
+object HexameterParser{
 
 /** Returns string of ascii characters without accents, breathings, or punctuation
  *  takes LiteraryGreekString
@@ -34,7 +34,7 @@ object HexameterParser {
  *  @parm s the String possibly containing a Synizesis
 */
  def accountForSynezisis(s: String) : String = {
-   val synizesis="""(ew)\b|(hu)""".r
+   val synizesis="""(ew)|(hu)""".r
    synizesis.replaceAllIn(s, "w")
  }
 
@@ -54,7 +54,7 @@ object HexameterParser {
   *  @param s the String
  */
  def longByPosition(s: String) : String = {
-   val longPosition= """(ai|au|ou|oi|ui|ei|eu|[hweoaiu])( ?)([zyc]|([qrtpsdygklzxcbnmf]( ?)[qrtpsdygklzxcbnmf]))""".r
+   val longPosition= """(ai|au|ou|oi|ui|ei|eu|[hweoaiu])( *)([zyc]|([qrtpsdygklzxcbnmf]( *)[qrtpsdygklzxcbnmf]))""".r
    longPosition.replaceAllIn(s, "-$2$3")
  }
 
