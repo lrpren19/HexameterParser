@@ -7,11 +7,22 @@ import edu.holycross.shot.gsphone._
 
 object HexameterParser{
 
-/** Returns string of ascii characters without accents, breathings, or punctuation
- *  takes LiteraryGreekString
- *  only keeps diareses and letters
- * @param gs the LiteraryGreekString
-*/
+
+  /** Replaces combinations of mute+liquid with mute only.
+  *
+  * @param s String to apply replacement to
+  */
+  def muteLiqdRule(s: String) : String = {
+    val consonantLiquid = """([qrtpsdygkzxcbnm])[lr]""".r
+    consonantLiquid.replaceAllIn(s,"$1")
+  }
+
+
+  /** Returns string of ascii characters without accents, breathings, or punctuation
+   *  takes LiteraryGreekString
+   *  only keeps diareses and letters
+   * @param gs the LiteraryGreekString
+  */
   def stripNonAlphabetic(gs: GreekString) : String = {
     val noAcc = gs.stripAccent.ascii
     val punctuationAndCaps= """[\(\)|,;:.*'"]""".r
