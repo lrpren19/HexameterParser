@@ -18,4 +18,11 @@ class HexameterScansionSpec extends FlatSpec {
     assert(iliad_1_1.spondees == expectedSpondees)
 
   }
+
+  "The Scansions object" should "contain all possible scansions of hexameters" in {
+    assert(Scansions.hexameter_1_1 == HexameterScansion(Spondee,Spondee,Spondee,Spondee,Spondee))
+  }
+
+  it should "have a total of 32 patterns" in pending
+  // Scansions.asVector.size == 32
 }

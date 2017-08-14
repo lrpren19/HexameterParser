@@ -43,7 +43,18 @@ case class HexameterScansion (
 }
 
 
-case class HexameterPattern2(id: String, scansion: HexameterScansion) {
+
+object Scansions {
+  val hexameter_1_1 = HexameterScansion(Spondee,Spondee,Spondee,Spondee,Spondee)
+  val hexameter_1_2 = HexameterScansion(Dactyl,Spondee,Spondee,Spondee,Spondee)
+
+  def asVector: Vector[HexameterScansion] = {
+    Vector(hexameter_1_1,
+      hexameter_1_2)
+  }
+}
+
+//case class HexameterPattern2(id: String, scansion: HexameterScansion) {
 
 /*
 1.1 S S S S S X
@@ -79,4 +90,3 @@ case class HexameterPattern2(id: String, scansion: HexameterScansion) {
 5.5 D D D D S X
 6.1 D D D D D X
 */
-}
