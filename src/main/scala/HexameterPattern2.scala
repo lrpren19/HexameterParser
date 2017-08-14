@@ -43,11 +43,14 @@ case class HexameterScansion (
 }
 
 
-
+/** Object defining all possible scansions of a hexameter.
+*/
 object Scansions {
   val hexameter_1_1 = HexameterScansion(Spondee,Spondee,Spondee,Spondee,Spondee)
   val hexameter_1_2 = HexameterScansion(Dactyl,Spondee,Spondee,Spondee,Spondee)
 
+  /** All scansions, as a Vector.
+  */
   def asVector: Vector[HexameterScansion] = {
     Vector(hexameter_1_1,
       hexameter_1_2)
