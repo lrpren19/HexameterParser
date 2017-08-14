@@ -6,6 +6,15 @@ trait Foot
 object Spondee extends Foot
 object Dactyl extends Foot
 
+/** Class representing the scansion of the first five
+* feet of a hexameter.  (Sixth is always anceps.)
+*
+* @param foot1 Scansion of first foot.
+* @param foot2 Scansion of second foot.
+* @param foot3 Scansion of third foot.
+* @param foot4 Scansion of fourth foot.
+* @param foot5 Scansion of fifth foot.
+*/
 case class HexameterScansion (
   foot1: Foot,
   foot2: Foot,
@@ -14,6 +23,9 @@ case class HexameterScansion (
   foot5: Foot
 ) {
 
+
+  /** Make scansions accessible as a Vector.
+  */
   def toVector: Vector[Foot] = {
     Vector(foot1, foot2, foot3, foot4, foot5)
   }
