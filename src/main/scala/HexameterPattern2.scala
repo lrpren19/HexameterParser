@@ -119,3 +119,7 @@ object Scansions {
     )
   }
 }
+
+object ScansionLengths {
+  val arrangement1_1Lengths = Vector("-","-","-","-","-","-","-","-","-","-","-","x")
+}

@@ -26,4 +26,6 @@ class HexameterScansionSpec extends FlatSpec {
   it should "have a total of 32 patterns" in {
   Scansions.asVector.size == 32
 }
+ "The ScansionsLengths" should "contain the lengths for each arrangement"
+  assert(ScansionLengths.arrangement1_1Lengths.size==12)
 }
