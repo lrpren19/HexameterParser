@@ -20,7 +20,7 @@ class TextTokenizingSpec extends FlatSpec {
    println("Vector of white-space delimited Greek words:\n" + gsVector + "\n")
    println("\nSyllabified:")
    val sylls = LGSyllable.syllabify(gsVector)
-   println(sylls.map(_.ucode).mkString(" -- "))
+   assert (sylls.size == HexameterParser.scan(line).size)
 
  }
 }

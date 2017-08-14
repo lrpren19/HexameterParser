@@ -1,7 +1,7 @@
 package edu.holycross.shot.lrp
 
 
-case class HexameterPattern() {
+case class HexameterPattern(identification: String, arrangement: String, composition: String, lengths: Int) {
 
 /*
 1.1 S S S S S X

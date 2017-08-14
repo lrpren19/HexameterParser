@@ -21,6 +21,11 @@ class HexameterParserSpec extends FlatSpec {
     assert (isolated == exp)
   }
 
+ it should "replace common isntances of synezesis with only the long vowel" in {
+   val s = LiteraryGreekString("πηληϊάδεω").ascii
+   val synizesisReplaced= HexameterParser.accountForSynezisis(s)
+   val exp = "πηληϊάδω"
+ }
  it should "replace uncertain vowels due to epic correption with ?" in {
    val s = "w h ei o"
    val correpted = HexameterParser.accountForCorreption(s)

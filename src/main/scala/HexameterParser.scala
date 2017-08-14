@@ -43,10 +43,10 @@ object HexameterParser{
 
 /** Returns String with vowels that combine do to synezis marked as an 'w'
  *  only accounts for 'εω' at the end of a word and 'ηυ'
- *  @parm s the String possibly containing a Synizesis
+ *  @parm s the ascii String possibly containing a Synizesis
 */
  def accountForSynezisis(s: String) : String = {
-   val synizesis="""(ew)|(hu)""".r
+   val synizesis="""(ew)\b|(hu)""".r
    synizesis.replaceAllIn(s, "w")
  }
 
