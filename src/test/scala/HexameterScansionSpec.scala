@@ -23,6 +23,7 @@ class HexameterScansionSpec extends FlatSpec {
     assert(Scansions.hexameter_1_1 == HexameterScansion(Spondee,Spondee,Spondee,Spondee,Spondee))
   }
 
-  it should "have a total of 32 patterns" in pending
-  // Scansions.asVector.size == 32
+  it should "have a total of 32 patterns" in {
+  Scansions.asVector.size == 32
+}
 }

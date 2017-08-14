@@ -47,49 +47,75 @@ case class HexameterScansion (
 */
 object Scansions {
   val hexameter_1_1 = HexameterScansion(Spondee,Spondee,Spondee,Spondee,Spondee)
-  val hexameter_1_2 = HexameterScansion(Dactyl,Spondee,Spondee,Spondee,Spondee)
+  val hexameter_2_1 = HexameterScansion(Dactyl,Spondee,Spondee,Spondee,Spondee)
+  val hexameter_2_2 = HexameterScansion(Spondee,Dactyl,Spondee,Spondee,Spondee)
+  val hexameter_2_3 = HexameterScansion(Spondee,Spondee,Dactyl,Spondee,Spondee)
+  val hexameter_2_4 = HexameterScansion(Spondee,Spondee,Spondee,Dactyl,Spondee)
+  val hexameter_2_5 = HexameterScansion(Spondee,Spondee,Spondee,Spondee,Dactyl)
+  val hexameter_3_1 = HexameterScansion(Dactyl,Dactyl,Spondee,Spondee,Spondee)
+  val hexameter_3_2 = HexameterScansion(Spondee,Dactyl,Dactyl,Spondee,Spondee)
+  val hexameter_3_3 = HexameterScansion(Spondee,Spondee,Dactyl,Dactyl,Spondee)
+  val hexameter_3_4 = HexameterScansion(Spondee,Spondee,Spondee,Dactyl,Dactyl)
+  val hexameter_3_5 = HexameterScansion(Dactyl,Spondee,Dactyl,Spondee,Spondee)
+  val hexameter_3_6 = HexameterScansion(Dactyl,Spondee,Spondee,Dactyl,Spondee)
+  val hexameter_3_7 = HexameterScansion(Dactyl,Spondee,Spondee,Spondee,Dactyl)
+  val hexameter_3_8 = HexameterScansion(Spondee,Dactyl,Spondee,Dactyl,Spondee)
+  val hexameter_3_9 = HexameterScansion(Spondee,Dactyl,Spondee,Spondee,Dactyl)
+  val hexameter_3_10 = HexameterScansion(Spondee,Spondee,Dactyl,Spondee,Dactyl)
+  val hexameter_4_1 = HexameterScansion(Spondee,Spondee,Dactyl,Dactyl,Dactyl)
+  val hexameter_4_2 = HexameterScansion(Dactyl,Spondee,Spondee,Dactyl,Dactyl)
+  val hexameter_4_3 = HexameterScansion(Dactyl,Dactyl,Spondee,Spondee,Dactyl)
+  val hexameter_4_4 = HexameterScansion(Dactyl,Dactyl,Dactyl,Spondee,Spondee)
+  val hexameter_4_5 = HexameterScansion(Spondee,Dactyl,Spondee,Dactyl,Dactyl)
+  val hexameter_4_6 = HexameterScansion(Spondee,Dactyl,Dactyl,Spondee,Dactyl)
+  val hexameter_4_7 = HexameterScansion(Spondee,Dactyl,Dactyl,Dactyl,Spondee)
+  val hexameter_4_8 = HexameterScansion(Dactyl,Spondee,Dactyl,Spondee,Dactyl)
+  val hexameter_4_9 = HexameterScansion(Dactyl,Spondee,Dactyl,Dactyl,Spondee)
+  val hexameter_4_10 = HexameterScansion(Dactyl,Dactyl,Spondee,Dactyl,Spondee)
+  val hexameter_5_1 = HexameterScansion(Spondee,Dactyl,Dactyl,Dactyl,Dactyl)
+  val hexameter_5_2 = HexameterScansion(Dactyl,Spondee,Dactyl,Dactyl,Dactyl)
+  val hexameter_5_3 = HexameterScansion(Dactyl,Dactyl,Spondee,Dactyl,Dactyl)
+  val hexameter_5_4 = HexameterScansion(Dactyl,Dactyl,Dactyl,Spondee,Dactyl)
+  val hexameter_5_5 = HexameterScansion(Dactyl,Dactyl,Dactyl,Dactyl,Spondee)
+  val hexameter_6_1 = HexameterScansion(Dactyl,Dactyl,Dactyl,Dactyl,Dactyl)
 
   /** All scansions, as a Vector.
   */
   def asVector: Vector[HexameterScansion] = {
     Vector(hexameter_1_1,
-      hexameter_1_2)
+      hexameter_2_1,
+      hexameter_1_1,
+      hexameter_2_1,
+      hexameter_2_2,
+      hexameter_2_3,
+      hexameter_2_4,
+      hexameter_2_5,
+      hexameter_3_1,
+      hexameter_3_2,
+      hexameter_3_3,
+      hexameter_3_4,
+      hexameter_3_5,
+      hexameter_3_6,
+      hexameter_3_7,
+      hexameter_3_8,
+      hexameter_3_9,
+      hexameter_3_10,
+      hexameter_4_1,
+      hexameter_4_2,
+      hexameter_4_3,
+      hexameter_4_4,
+      hexameter_4_5,
+      hexameter_4_6,
+      hexameter_4_7,
+      hexameter_4_8,
+      hexameter_4_9,
+      hexameter_4_10,
+      hexameter_5_1,
+      hexameter_5_2,
+      hexameter_5_3,
+      hexameter_5_4,
+      hexameter_5_5,
+      hexameter_6_1
+    )
   }
 }
-
-//case class HexameterPattern2(id: String, scansion: HexameterScansion) {
-
-/*
-1.1 S S S S S X
-2.1 D S S S S X
-2.2 S D S S S X
-2.3 S S D S S X
-2.4 S S S D S X
-2.5 S S S S D X
-3.1 D D S S S X
-3.2 S D D S S X
-3.3 S S D D S X
-3.4 S S S D D X
-3.5 D S D S S X
-3.6 D S S D S X
-3.7 D S S S D X
-3.8 S D S D S X
-3.9 S D S S D X
-3.10 S S D S D X
-4.1 S S D D D X
-4.2 D S S D D X
-4.3 D D S S D X
-4.4 D D D S S X
-4.5 S D S D D X
-4.6 S D D S D X
-4.7 S D D D S X
-4.8 D S D S D X
-4.9 D S D D S X
-4.10 D D S D S X
-5.1 S D D D D X
-5.2 D S D D D X
-5.3 D D S D D X
-5.4 D D D S D X
-5.5 D D D D S X
-6.1 D D D D D X
-*/
